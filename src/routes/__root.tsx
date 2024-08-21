@@ -1,5 +1,11 @@
+import { Box, useMantineTheme } from '@mantine/core'
+import type { QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import {
+  createRootRouteWithContext,
+  Link,
+  Outlet,
+} from '@tanstack/react-router'
 import React, { Suspense } from 'react'
 
 const TanStackRouterDevtools =
@@ -12,23 +18,44 @@ const TanStackRouterDevtools =
         })),
       )
 
-export const Route = createRootRoute({
-  component: () => (
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
+  {
+    component: RootComponent,
+    notFoundComponent: () => (
+      <div>
+        <p>NotFound</p>
+        <Link to="/">Go to Home</Link>
+      </div>
+    ),
+  },
+)
+
+function RootComponent() {
+  const theme = useMantineTheme()
+
+  return (
     <>
-      <div className="p-2 flex gap-2">
+      <Box
+        p={theme.spacing.xs}
+        display="flex"
+        style={{ gap: theme.spacing.xs }}
+      >
         <Link to="/" className="[&.active]:font-bold">
           Home
+        </Link>
+        <Link to="/posts" className="[&.active]:font-bold">
+          Posts
         </Link>
         <Link to="/about" className="[&.active]:font-bold">
           About
         </Link>
-      </div>
+      </Box>
       <hr />
       <Outlet />
+      <ReactQueryDevtools />
       <Suspense>
-        <ReactQueryDevtools />
         <TanStackRouterDevtools />
       </Suspense>
     </>
-  ),
-})
+  )
+}

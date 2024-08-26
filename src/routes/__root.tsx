@@ -1,4 +1,3 @@
-import { Box, useMantineTheme } from '@mantine/core'
 import type { QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import {
@@ -7,6 +6,7 @@ import {
   Outlet,
 } from '@tanstack/react-router'
 import React, { Suspense } from 'react'
+import { Header, Main } from '../components'
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === 'production'
@@ -30,28 +30,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   },
 )
 
-function RootComponent() {
-  const theme = useMantineTheme()
+const links = [
+  { link: '/', label: 'Home' },
+  { link: '/posts', label: 'Posts' },
+  { link: '/about', label: 'About' },
+]
 
+function RootComponent() {
   return (
     <>
-      <Box
-        p={theme.spacing.xs}
-        display="flex"
-        style={{ gap: theme.spacing.xs }}
-      >
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>
-        <Link to="/posts" className="[&.active]:font-bold">
-          Posts
-        </Link>
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
-      </Box>
-      <hr />
-      <Outlet />
+      <Header links={links} />
+      <Main>
+        <Outlet />
+      </Main>
       <ReactQueryDevtools />
       <Suspense>
         <TanStackRouterDevtools />

@@ -29,15 +29,15 @@ export const link = style({
   padding: `0 ${rem(18)}`,
   textDecoration: 'none',
   borderRadius: vars.radius.sm,
-  color: vars.colors.defaultColor,
+  color: vars.colors.text,
   fontSize: vars.fontSizes.sm,
   fontWeight: 600,
   selectors: {
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: vars.colors.gray[1],
+      backgroundColor: vars.colors.defaultHover,
     },
-    '&[data-active]': {
+    '[data-mantine-color-scheme] &[data-active]': {
       backgroundColor: vars.colors.blue.filled,
       color: vars.colors.white,
     },

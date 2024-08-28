@@ -4,15 +4,15 @@ import { vars } from '../theme'
 
 export const navbar = style({
   width: rem(300),
-  height: '100%',
   backgroundColor: vars.colors.default,
   padding: vars.spacing.md,
-  display: 'flex',
-  flexDirection: 'column',
   borderRight: `${rem(1)} solid`,
   flexShrink: 0,
+  position: 'fixed',
+  top: rem(56),
+  left: 0,
+  bottom: 0,
   [vars.lightSelector]: {
-    color: vars.colors.gray[7],
     borderRightColor: vars.colors.gray[3],
   },
   [vars.darkSelector]: {

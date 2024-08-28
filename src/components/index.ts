@@ -1,3 +1,4 @@
+export * from './ColorSchemaIcon'
 export * from './Header'
 export * from './LinksGroup'
 export * from './Logo'

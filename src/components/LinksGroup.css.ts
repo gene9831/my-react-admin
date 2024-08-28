@@ -24,7 +24,6 @@ export const link = style({
   padding: `${vars.spacing.xs} ${vars.spacing.md}`,
   paddingLeft: vars.spacing.md,
   marginLeft: vars.spacing.xl,
-  color: vars.colors.text,
   fontSize: vars.fontSizes.sm,
   borderLeft: `${rem(1)} solid`,
   selectors: {
@@ -33,6 +32,7 @@ export const link = style({
       borderLeftColor: vars.colors.gray[3],
     },
     [vars.darkSelector]: {
+      color: vars.colors.text,
       borderLeftColor: vars.colors.dark[4],
     },
     '&:hover': {
@@ -42,6 +42,13 @@ export const link = style({
   },
 })
 
+export const icon = style({
+  width: rem(18),
+  height: rem(18),
+})
+
 export const chevron = style({
+  width: rem(16),
+  height: rem(16),
   transition: 'transform 200ms ease',
 })

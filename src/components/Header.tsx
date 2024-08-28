@@ -2,8 +2,9 @@ import { Anchor, Burger, Container, Group, rem } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
-import { Logo } from './Logo.tsx'
+import { ColorSchemaIcon } from './ColorSchemaIcon.tsx'
 import * as classes from './Header.css.ts'
+import { Logo } from './Logo.tsx'
 
 export interface HeaderProps {
   links: {
@@ -39,6 +40,7 @@ export function Header({ links }: HeaderProps) {
         </Group>
         <Group gap={8} visibleFrom="xs">
           {items}
+          <ColorSchemaIcon />
         </Group>
         <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
       </Container>

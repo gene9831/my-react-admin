@@ -3,8 +3,12 @@ import { vars } from '../theme'
 import { rem } from '@mantine/core'
 
 export const header = style({
+  width: '100%',
   height: rem(56),
+  backgroundColor: vars.colors.default,
   borderBottom: `${rem(1)} solid`,
+  position: 'fixed',
+  top: 0,
   selectors: {
     [vars.lightSelector]: {
       borderBottomColor: vars.colors.gray[3],

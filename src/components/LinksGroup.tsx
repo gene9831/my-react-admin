@@ -5,7 +5,6 @@ import {
   Text,
   ThemeIcon,
   UnstyledButton,
-  rem,
 } from '@mantine/core'
 import { IconChevronRight } from '@tabler/icons-react'
 import { useState } from 'react'
@@ -47,7 +46,7 @@ export function LinksGroup({
         <Group justify="space-between" gap={0}>
           <Box style={{ display: 'flex', alignItems: 'center' }}>
             <ThemeIcon variant="light" size={30}>
-              <Icon style={{ width: rem(18), height: rem(18) }} />
+              <Icon className={classes.icon} />
             </ThemeIcon>
             <Box ml="md">{label}</Box>
           </Box>
@@ -56,8 +55,6 @@ export function LinksGroup({
               className={classes.chevron}
               stroke={1.5}
               style={{
-                width: rem(16),
-                height: rem(16),
                 transform: opened ? 'rotate(-90deg)' : 'none',
               }}
             />

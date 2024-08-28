@@ -12,7 +12,7 @@ export const button = style({
       color: vars.colors.gray[7],
     },
     [vars.darkSelector]: {
-      color: vars.colors.text,
+      color: vars.colors.white,
     },
   },
 })

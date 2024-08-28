@@ -18,7 +18,7 @@ export function ColorSchemaIcon() {
       variant="outline"
       onClick={() => toggleColorScheme()}
     >
-      <Icon className={classes.icon} />
+      <Icon strokeWidth={1.5} className={classes.icon} />
     </ActionIcon>
   )
 }

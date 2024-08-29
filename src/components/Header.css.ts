@@ -6,17 +6,9 @@ export const header = style({
   width: '100%',
   height: rem(56),
   backgroundColor: vars.colors.default,
-  borderBottom: `${rem(1)} solid`,
+  borderBottom: `${rem(1)} solid ${vars.colors.defaultBorder}`,
   position: 'fixed',
   top: 0,
-  selectors: {
-    [vars.lightSelector]: {
-      borderBottomColor: vars.colors.gray[3],
-    },
-    [vars.darkSelector]: {
-      borderBottomColor: vars.colors.dark[4],
-    },
-  },
 })
 
 export const container = style({
@@ -42,7 +34,7 @@ export const link = style({
       backgroundColor: vars.colors.defaultHover,
     },
     '[data-mantine-color-scheme] &[data-active]': {
-      backgroundColor: vars.colors.blue.filled,
+      backgroundColor: vars.colors.primary,
       color: vars.colors.white,
     },
   },

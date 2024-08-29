@@ -7,7 +7,6 @@ export const control = style({
   display: 'block',
   width: '100%',
   padding: `${vars.spacing.xs} ${vars.spacing.md}`,
-  color: vars.colors.text,
   fontSize: vars.fontSizes.sm,
   selectors: {
     '&:hover': {
@@ -25,15 +24,13 @@ export const link = style({
   paddingLeft: vars.spacing.md,
   marginLeft: vars.spacing.xl,
   fontSize: vars.fontSizes.sm,
-  borderLeft: `${rem(1)} solid`,
+  borderLeft: `${rem(1)} solid ${vars.colors.defaultBorder}`,
   selectors: {
     [vars.lightSelector]: {
       color: vars.colors.gray[7],
-      borderLeftColor: vars.colors.gray[3],
     },
     [vars.darkSelector]: {
       color: vars.colors.text,
-      borderLeftColor: vars.colors.dark[4],
     },
     '&:hover': {
       textDecoration: 'none',

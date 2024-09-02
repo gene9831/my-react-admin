@@ -6,10 +6,10 @@ export const Route = createFileRoute('/posts/$postId')({
   loader: ({ context: { queryClient }, params: { postId } }) => {
     return queryClient.ensureQueryData(postQueryOptions(postId))
   },
-  component: PostComponent,
+  component: Post,
 })
 
-function PostComponent() {
+function Post() {
   const postId = Route.useParams().postId
   const { data: post } = useSuspenseQuery(postQueryOptions(postId))
 

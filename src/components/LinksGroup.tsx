@@ -10,7 +10,7 @@ import { IconChevronRight } from '@tabler/icons-react'
 import { useState } from 'react'
 import * as classes from './LinksGroup.css'
 
-interface LinksGroupProps {
+export interface LinksGroupProps {
   icon: React.FC<Record<string, unknown>>
   label: string
   initiallyOpened?: boolean

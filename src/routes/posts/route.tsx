@@ -5,10 +5,10 @@ import { postsQueryOptions } from '../../queryOptions/posts'
 export const Route = createFileRoute('/posts')({
   loader: ({ context: { queryClient } }) =>
     queryClient.ensureQueryData(postsQueryOptions),
-  component: PostsComponent,
+  component: Posts,
 })
 
-function PostsComponent() {
+function Posts() {
   const { data: posts } = useSuspenseQuery(postsQueryOptions)
 
   return (

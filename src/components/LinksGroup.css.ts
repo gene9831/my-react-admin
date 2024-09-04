@@ -27,7 +27,7 @@ export const link = style({
   borderLeft: `${rem(1)} solid ${vars.colors.defaultBorder}`,
   selectors: {
     [vars.lightSelector]: {
-      color: vars.colors.gray[7],
+      color: vars.colors.textSecondary,
     },
     [vars.darkSelector]: {
       color: vars.colors.text,

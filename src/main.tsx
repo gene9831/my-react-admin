@@ -6,7 +6,7 @@ import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { routeTree } from './routeTree.gen'
-import { theme } from './theme'
+import { cssVariablesResolver, theme } from './theme'
 
 const queryClient = new QueryClient()
 
@@ -29,7 +29,10 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <MantineProvider theme={theme}>
+      <MantineProvider
+        theme={theme}
+        cssVariablesResolver={cssVariablesResolver}
+      >
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
         </QueryClientProvider>

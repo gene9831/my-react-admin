@@ -1,3 +1,4 @@
+import type { ElementProps, UnstyledButtonProps } from '@mantine/core'
 import {
   Box,
   Collapse,
@@ -7,39 +8,56 @@ import {
   UnstyledButton,
 } from '@mantine/core'
 import { IconChevronRight } from '@tabler/icons-react'
+import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
+import type { MergeExclusive } from 'type-fest'
 import * as classes from './LinksGroup.css'
 
-export interface LinksGroupProps {
+interface UnstyledButtonLinkProps
+  extends UnstyledButtonProps,
+    ElementProps<typeof Link, keyof UnstyledButtonProps> {}
+
+function UnstyledButtonLink(props: UnstyledButtonLinkProps) {
+  return <UnstyledButton component={Link} {...props}></UnstyledButton>
+}
+
+export type LinksGroupProps = {
   icon: React.FC<Record<string, unknown>>
   label: string
-  initiallyOpened?: boolean
-  links?: { label: string; link: string }[]
-}
+} & MergeExclusive<
+  { link?: string },
+  {
+    initiallyOpened?: boolean
+    links?: { label: string; link: string }[]
+  }
+>
 
 export function LinksGroup({
   icon: Icon,
   label,
+  link,
   initiallyOpened,
   links,
 }: LinksGroupProps) {
   const hasLinks = Array.isArray(links)
   const [opened, setOpened] = useState(initiallyOpened || false)
   const items = (hasLinks ? links : []).map((link) => (
-    <Text<'a'>
-      component="a"
+    <Text
+      component={Link}
       className={classes.link}
-      href={link.link}
+      to={link.link}
       key={link.label}
-      onClick={(event) => event.preventDefault()}
     >
       {link.label}
     </Text>
   ))
 
+  const ButtonOrLink = hasLinks ? UnstyledButton : UnstyledButtonLink
+
   return (
     <>
-      <UnstyledButton
+      <ButtonOrLink
+        to={link}
         onClick={() => setOpened((o) => !o)}
         className={classes.control}
       >
@@ -60,7 +78,7 @@ export function LinksGroup({
             />
           )}
         </Group>
-      </UnstyledButton>
+      </ButtonOrLink>
       {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
     </>
   )

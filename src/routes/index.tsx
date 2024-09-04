@@ -40,7 +40,7 @@ const linksGroup: LinksGroupProps[] = [
   },
   { label: 'Analytics', icon: IconPresentationAnalytics },
   { label: 'Contracts', icon: IconFileAnalytics },
-  { label: 'Settings', icon: IconAdjustments },
+  { label: 'Settings', icon: IconAdjustments, link: '/settings' },
   {
     label: 'Security',
     icon: IconLock,

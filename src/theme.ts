@@ -1,4 +1,4 @@
-import type { CSSVariablesResolver } from '@mantine/core'
+import type { CSSVariablesResolver, CssVariable } from '@mantine/core'
 import { createTheme } from '@mantine/core'
 import type { MantineVars } from '@mantine/vanilla-extract'
 import { themeToVars } from '@mantine/vanilla-extract'
@@ -9,7 +9,7 @@ export const theme = createTheme({
 
 const CssVarTokens = {
   colorTextSecondary: '--mantine-color-text-secondary',
-} as const
+} satisfies Record<string, CssVariable>
 
 export const cssVariablesResolver: CSSVariablesResolver = (theme) => ({
   variables: {},

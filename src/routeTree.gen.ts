@@ -13,8 +13,9 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as AboutImport } from './routes/about'
 import { Route as PostsRouteImport } from './routes/posts/route'
-import { Route as IndexImport } from './routes/index'
+import { Route as LayoutRouteImport } from './routes/_layout/route'
 import { Route as PostsIndexImport } from './routes/posts/index'
+import { Route as LayoutIndexImport } from './routes/_layout/index'
 import { Route as PostsPostIdImport } from './routes/posts/$postId'
 
 // Create/Update Routes
@@ -29,14 +30,19 @@ const PostsRouteRoute = PostsRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const IndexRoute = IndexImport.update({
-  path: '/',
+const LayoutRouteRoute = LayoutRouteImport.update({
+  id: '/_layout',
   getParentRoute: () => rootRoute,
 } as any)
 
 const PostsIndexRoute = PostsIndexImport.update({
   path: '/',
   getParentRoute: () => PostsRouteRoute,
+} as any)
+
+const LayoutIndexRoute = LayoutIndexImport.update({
+  path: '/',
+  getParentRoute: () => LayoutRouteRoute,
 } as any)
 
 const PostsPostIdRoute = PostsPostIdImport.update({
@@ -48,11 +54,11 @@ const PostsPostIdRoute = PostsPostIdImport.update({
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
+    '/_layout': {
+      id: '/_layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof LayoutRouteImport
       parentRoute: typeof rootRoute
     }
     '/posts': {
@@ -76,6 +82,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostsPostIdImport
       parentRoute: typeof PostsRouteImport
     }
+    '/_layout/': {
+      id: '/_layout/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof LayoutIndexImport
+      parentRoute: typeof LayoutRouteImport
+    }
     '/posts/': {
       id: '/posts/'
       path: '/'
@@ -89,7 +102,7 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  IndexRoute,
+  LayoutRouteRoute: LayoutRouteRoute.addChildren({ LayoutIndexRoute }),
   PostsRouteRoute: PostsRouteRoute.addChildren({
     PostsPostIdRoute,
     PostsIndexRoute,
@@ -105,13 +118,16 @@ export const routeTree = rootRoute.addChildren({
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
+        "/_layout",
         "/posts",
         "/about"
       ]
     },
-    "/": {
-      "filePath": "index.tsx"
+    "/_layout": {
+      "filePath": "_layout/route.tsx",
+      "children": [
+        "/_layout/"
+      ]
     },
     "/posts": {
       "filePath": "posts/route.tsx",
@@ -126,6 +142,10 @@ export const routeTree = rootRoute.addChildren({
     "/posts/$postId": {
       "filePath": "posts/$postId.tsx",
       "parent": "/posts"
+    },
+    "/_layout/": {
+      "filePath": "_layout/index.tsx",
+      "parent": "/_layout"
     },
     "/posts/": {
       "filePath": "posts/index.tsx",

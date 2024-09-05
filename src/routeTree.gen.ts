@@ -19,6 +19,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as PostsIndexImport } from './routes/posts/index'
 import { Route as PostsPostIdImport } from './routes/posts/$postId'
 import { Route as HomeLayoutImport } from './routes/home/_layout'
+import { Route as authLoginImport } from './routes/(auth)/login'
 import { Route as HomeLayoutIndexImport } from './routes/home/_layout/index'
 import { Route as HomeLayoutDashboardImport } from './routes/home/_layout/dashboard'
 
@@ -63,6 +64,11 @@ const HomeLayoutRoute = HomeLayoutImport.update({
   getParentRoute: () => HomeRoute,
 } as any)
 
+const authLoginRoute = authLoginImport.update({
+  path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const HomeLayoutIndexRoute = HomeLayoutIndexImport.update({
   path: '/',
   getParentRoute: () => HomeLayoutRoute,
@@ -96,6 +102,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutImport
+      parentRoute: typeof rootRoute
+    }
+    '/(auth)/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof authLoginImport
       parentRoute: typeof rootRoute
     }
     '/home': {
@@ -152,6 +165,7 @@ export const routeTree = rootRoute.addChildren({
     PostsIndexRoute,
   }),
   AboutRoute,
+  authLoginRoute,
   HomeRoute: HomeRoute.addChildren({
     HomeLayoutRoute: HomeLayoutRoute.addChildren({
       HomeLayoutDashboardRoute,
@@ -171,6 +185,7 @@ export const routeTree = rootRoute.addChildren({
         "/",
         "/posts",
         "/about",
+        "/login",
         "/home"
       ]
     },
@@ -186,6 +201,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/login": {
+      "filePath": "(auth)/login.tsx"
     },
     "/home": {
       "filePath": "home",

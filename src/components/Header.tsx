@@ -34,6 +34,8 @@ export function Header({ links }: HeaderProps) {
     </Anchor>
   ))
 
+  const matched = links.some((link) => link.link === active)
+
   return (
     <header className={classes.header}>
       <Container fluid className={classes.container}>
@@ -41,7 +43,7 @@ export function Header({ links }: HeaderProps) {
           <Logo style={{ width: rem(120) }} />
         </Group>
         <Group gap={8} visibleFrom="xs">
-          {items}
+          {matched ? items : null}
           <ColorSchemaIcon />
         </Group>
       </Container>

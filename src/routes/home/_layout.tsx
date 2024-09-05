@@ -10,44 +10,44 @@ import {
   IconPresentationAnalytics,
 } from '@tabler/icons-react'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
-import * as classes from './route.css'
+import * as classes from './_layout.css'
 
-export const Route = createFileRoute('/_layout')({
+export const Route = createFileRoute('/home/_layout')({
   component: Layout,
 })
 
 const linksGroup: LinksGroupProps[] = [
-  { label: 'Dashboard', icon: IconGauge, link: '/dashboard' },
+  { label: 'Dashboard', icon: IconGauge, link: '/home/dashboard' },
   {
     label: 'Market news',
     icon: IconNotes,
     initiallyOpened: true,
     links: [
-      { label: 'Overview', link: '/' },
-      { label: 'Forecasts', link: '/' },
-      { label: 'Outlook', link: '/' },
-      { label: 'Real time', link: '/' },
+      { label: 'Overview', link: '/home' },
+      { label: 'Forecasts', link: '/home' },
+      { label: 'Outlook', link: '/home' },
+      { label: 'Real time', link: '/home' },
     ],
   },
   {
     label: 'Releases',
     icon: IconCalendarStats,
     links: [
-      { label: 'Upcoming releases', link: '/' },
-      { label: 'Previous releases', link: '/' },
-      { label: 'Releases schedule', link: '/' },
+      { label: 'Upcoming releases', link: '/home' },
+      { label: 'Previous releases', link: '/home' },
+      { label: 'Releases schedule', link: '/home' },
     ],
   },
   { label: 'Analytics', icon: IconPresentationAnalytics },
   { label: 'Contracts', icon: IconFileAnalytics },
-  { label: 'Settings', icon: IconAdjustments, link: '/settings' },
+  { label: 'Settings', icon: IconAdjustments, link: '/home/settings' },
   {
     label: 'Security',
     icon: IconLock,
     links: [
-      { label: 'Enable 2FA', link: '/' },
-      { label: 'Change password', link: '/' },
-      { label: 'Recovery codes', link: '/' },
+      { label: 'Enable 2FA', link: '/home' },
+      { label: 'Change password', link: '/home' },
+      { label: 'Recovery codes', link: '/home' },
     ],
   },
 ]

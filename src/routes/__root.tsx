@@ -24,14 +24,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     notFoundComponent: () => (
       <div>
         <p>NotFound</p>
-        <Link to="/">Go to Home</Link>
+        <Link to="/home">Go to Home</Link>
       </div>
     ),
   },
 )
 
 const links = [
-  { link: '/', label: 'Home' },
+  { link: '/home', label: 'Home' },
   { link: '/posts', label: 'Posts' },
   { link: '/about', label: 'About' },
 ]

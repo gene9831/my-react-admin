@@ -1,7 +1,6 @@
-import { Anchor, Burger, Container, Group, rem } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
-import { Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import { Anchor, Container, Group, rem } from '@mantine/core'
+import { Link, useLocation } from '@tanstack/react-router'
+import { useMemo } from 'react'
 import { ColorSchemaIcon } from './ColorSchemaIcon.tsx'
 import * as classes from './Header.css.ts'
 import { Logo } from './Logo.tsx'
@@ -14,8 +13,14 @@ export interface HeaderProps {
 }
 
 export function Header({ links }: HeaderProps) {
-  const [opened, { toggle }] = useDisclosure(false)
-  const [active, setActive] = useState(links[0].link)
+  const pathname = useLocation({
+    select: (location) => location.pathname,
+  })
+
+  const active = useMemo(() => {
+    const paths = pathname.split('/').filter((item) => Boolean(item))
+    return `/${paths[0]}`
+  }, [pathname])
 
   const items = links.map((link) => (
     <Anchor
@@ -24,9 +29,6 @@ export function Header({ links }: HeaderProps) {
       to={link.link}
       className={classes.link}
       data-active={active === link.link || undefined}
-      onClick={() => {
-        setActive(link.link)
-      }}
     >
       {link.label}
     </Anchor>
@@ -42,7 +44,6 @@ export function Header({ links }: HeaderProps) {
           {items}
           <ColorSchemaIcon />
         </Group>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
       </Container>
     </header>
   )

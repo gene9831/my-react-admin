@@ -1,7 +1,7 @@
 import { Text, Title } from '@mantine/core'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/_layout/')({
+export const Route = createFileRoute('/home/_layout/')({
   component: Index,
 })
 

@@ -1,3 +1,4 @@
+import { Header, Main } from '@/components'
 import type { QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import {
@@ -6,7 +7,6 @@ import {
   Outlet,
 } from '@tanstack/react-router'
 import React, { Suspense } from 'react'
-import { Header, Main } from '../components'
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === 'production'

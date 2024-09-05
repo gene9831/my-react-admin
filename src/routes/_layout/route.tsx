@@ -1,3 +1,4 @@
+import { NavbarNested, type LinksGroupProps } from '@/components'
 import { Box, Container } from '@mantine/core'
 import {
   IconAdjustments,
@@ -9,8 +10,6 @@ import {
   IconPresentationAnalytics,
 } from '@tabler/icons-react'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
-import type { LinksGroupProps } from '../../components'
-import { NavbarNested } from '../../components'
 import * as classes from './route.css'
 
 export const Route = createFileRoute('/_layout')({

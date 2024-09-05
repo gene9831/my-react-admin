@@ -1,6 +1,6 @@
-import { style } from '@vanilla-extract/css'
-import { vars } from '../theme'
+import { vars } from '@/theme'
 import { rem } from '@mantine/core'
+import { style } from '@vanilla-extract/css'
 
 export const header = style({
   width: '100%',

@@ -1,6 +1,6 @@
+import { postsQueryOptions } from '@/queryOptions/posts'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
-import { postsQueryOptions } from '../../queryOptions/posts'
 
 export const Route = createFileRoute('/posts')({
   loader: ({ context: { queryClient } }) =>

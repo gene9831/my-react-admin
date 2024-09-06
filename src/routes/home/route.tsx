@@ -10,9 +10,9 @@ import {
   IconPresentationAnalytics,
 } from '@tabler/icons-react'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
-import * as classes from './_layout.css'
+import * as classes from './route.css'
 
-export const Route = createFileRoute('/home/_layout')({
+export const Route = createFileRoute('/home')({
   component: Layout,
 })
 

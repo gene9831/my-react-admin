@@ -25,30 +25,30 @@ const linksGroup: LinksGroupProps[] = [
     initiallyOpened: true,
     links: [
       { label: 'Overview', link: '' },
-      { label: 'Forecasts', link: '' },
-      { label: 'Outlook', link: '' },
-      { label: 'Real time', link: '' },
+      { label: 'Forecasts', link: 'forecasts' },
+      { label: 'Outlook', link: 'outlook' },
+      { label: 'Real time', link: 'real-time' },
     ],
   },
   {
     label: 'Releases',
     icon: IconCalendarStats,
     links: [
-      { label: 'Upcoming releases', link: '' },
-      { label: 'Previous releases', link: '' },
-      { label: 'Releases schedule', link: '' },
+      { label: 'Upcoming releases', link: 'upcoming-releases' },
+      { label: 'Previous releases', link: 'previous-releases' },
+      { label: 'Releases schedule', link: 'releases-schedule' },
     ],
   },
-  { label: 'Analytics', icon: IconPresentationAnalytics },
-  { label: 'Contracts', icon: IconFileAnalytics },
+  { label: 'Analytics', icon: IconPresentationAnalytics, link: 'analytics' },
+  { label: 'Contracts', icon: IconFileAnalytics, link: 'contracts' },
   { label: 'Settings', icon: IconAdjustments, link: 'settings' },
   {
     label: 'Security',
     icon: IconLock,
     links: [
-      { label: 'Enable 2FA', link: '' },
-      { label: 'Change password', link: '' },
-      { label: 'Recovery codes', link: '' },
+      { label: 'Enable 2FA', link: 'enable-2fa' },
+      { label: 'Change password', link: 'change-password' },
+      { label: 'Recovery codes', link: 'recovery-codes' },
     ],
   },
 ]
@@ -77,7 +77,7 @@ function Layout() {
     <>
       <NavbarNested linksGroup={processLinksGroup(match)} />
       <Box className={classes.containerWrap}>
-        <Container fluid className={classes.container}>
+        <Container size="xl" className={classes.container}>
           <Outlet />
         </Container>
       </Box>

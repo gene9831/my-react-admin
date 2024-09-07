@@ -18,6 +18,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as PostsIndexImport } from './routes/posts/index'
 import { Route as HomeIndexImport } from './routes/home/index'
 import { Route as PostsPostIdImport } from './routes/posts/$postId'
+import { Route as HomeForecastsImport } from './routes/home/forecasts'
 import { Route as HomeDashboardImport } from './routes/home/dashboard'
 import { Route as authLoginImport } from './routes/(auth)/login'
 
@@ -56,6 +57,11 @@ const HomeIndexRoute = HomeIndexImport.update({
 const PostsPostIdRoute = PostsPostIdImport.update({
   path: '/$postId',
   getParentRoute: () => PostsRouteRoute,
+} as any)
+
+const HomeForecastsRoute = HomeForecastsImport.update({
+  path: '/forecasts',
+  getParentRoute: () => HomeRouteRoute,
 } as any)
 
 const HomeDashboardRoute = HomeDashboardImport.update({
@@ -114,6 +120,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeDashboardImport
       parentRoute: typeof HomeRouteImport
     }
+    '/home/forecasts': {
+      id: '/home/forecasts'
+      path: '/forecasts'
+      fullPath: '/home/forecasts'
+      preLoaderRoute: typeof HomeForecastsImport
+      parentRoute: typeof HomeRouteImport
+    }
     '/posts/$postId': {
       id: '/posts/$postId'
       path: '/$postId'
@@ -144,6 +157,7 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   HomeRouteRoute: HomeRouteRoute.addChildren({
     HomeDashboardRoute,
+    HomeForecastsRoute,
     HomeIndexRoute,
   }),
   PostsRouteRoute: PostsRouteRoute.addChildren({
@@ -176,6 +190,7 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "home/route.tsx",
       "children": [
         "/home/dashboard",
+        "/home/forecasts",
         "/home/"
       ]
     },
@@ -194,6 +209,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/home/dashboard": {
       "filePath": "home/dashboard.tsx",
+      "parent": "/home"
+    },
+    "/home/forecasts": {
+      "filePath": "home/forecasts.tsx",
       "parent": "/home"
     },
     "/posts/$postId": {

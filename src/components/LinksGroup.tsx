@@ -1,3 +1,4 @@
+import { trimEnd } from '@/utils'
 import type { ElementProps, UnstyledButtonProps } from '@mantine/core'
 import {
   Box,
@@ -24,6 +25,7 @@ function UnstyledButtonLink(props: UnstyledButtonLinkProps) {
 export type LinksGroupProps = {
   icon: React.FC<Record<string, unknown>>
   label: string
+  location?: string
 } & MergeExclusive<
   { link?: string },
   {
@@ -38,15 +40,23 @@ export function LinksGroup({
   link,
   initiallyOpened,
   links,
+  location,
 }: LinksGroupProps) {
   const hasLinks = Array.isArray(links)
   const [opened, setOpened] = useState(initiallyOpened || false)
+  const isActive = (link?: string) =>
+    (typeof location === 'string' &&
+      typeof link === 'string' &&
+      trimEnd(location, '/') === trimEnd(link, '/')) ||
+    undefined
+
   const items = (hasLinks ? links : []).map((link) => (
     <Text
       component={Link}
       className={classes.link}
       to={link.link}
       key={link.label}
+      data-active={isActive(link.link)}
     >
       {link.label}
     </Text>
@@ -60,6 +70,7 @@ export function LinksGroup({
         to={link}
         onClick={() => setOpened((o) => !o)}
         className={classes.control}
+        data-active={isActive(link)}
       >
         <Group justify="space-between" gap={0}>
           <Box style={{ display: 'flex', alignItems: 'center' }}>

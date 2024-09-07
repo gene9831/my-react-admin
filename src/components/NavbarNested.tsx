@@ -1,4 +1,5 @@
 import { ScrollArea } from '@mantine/core'
+import { useLocation } from '@tanstack/react-router'
 import type { LinksGroupProps } from './LinksGroup'
 import { LinksGroup } from './LinksGroup'
 import * as classes from './NavbarNested.css'
@@ -8,8 +9,12 @@ export interface NavbarNestedProps {
 }
 
 export function NavbarNested(props: NavbarNestedProps) {
-  const links = props.linksGroup.map((item) => (
-    <LinksGroup {...item} key={item.label} />
+  const location = useLocation({
+    select: (state) => state.pathname,
+  })
+
+  const links = props.linksGroup.map((item, index) => (
+    <LinksGroup {...item} location={location} key={index} />
   ))
 
   return (

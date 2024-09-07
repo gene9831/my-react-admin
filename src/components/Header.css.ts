@@ -9,6 +9,7 @@ export const header = style({
   borderBottom: `${rem(1)} solid ${vars.colors.defaultBorder}`,
   position: 'fixed',
   top: 0,
+  zIndex: 100,
 })
 
 export const container = style({

@@ -14,9 +14,8 @@ import {
   IconSearch,
   IconSelector,
 } from '@tabler/icons-react'
-import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import * as classes from './TableSort.css'
-import { useStore as useAtomStore } from './store'
+import { useStore } from './store'
 import type { OrderType, RowData } from './types'
 
 interface ThProps {
@@ -59,11 +58,7 @@ const columns: Array<{ label: string; field: keyof RowData }> = [
 ]
 
 export function TableSort() {
-  const store = useAtomStore()
-  const [search, setSearch] = useAtom(store.search)
-  const sort = useAtomValue(store.sort)
-  const setSortBy = useSetAtom(store.setSortBy)
-  const displayedData = useAtomValue(store.displayedData)
+  const { search, setSearch, sort, setSortBy, displayedData } = useStore()
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget
@@ -105,6 +100,7 @@ export function TableSort() {
                 key={field}
                 sorted={sort.sortBy === field}
                 order={sort.order}
+                // TODO 这里似乎不满足纯函数原则，相同field输入会引起不同结果
                 onSort={() => setSortBy(field)}
               >
                 {label}

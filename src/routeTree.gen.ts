@@ -153,20 +153,131 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({
-  IndexRoute,
-  HomeRouteRoute: HomeRouteRoute.addChildren({
-    HomeDashboardRoute,
-    HomeForecastsRoute,
-    HomeIndexRoute,
-  }),
-  PostsRouteRoute: PostsRouteRoute.addChildren({
-    PostsPostIdRoute,
-    PostsIndexRoute,
-  }),
-  AboutRoute,
-  authLoginRoute,
-})
+interface HomeRouteRouteChildren {
+  HomeDashboardRoute: typeof HomeDashboardRoute
+  HomeForecastsRoute: typeof HomeForecastsRoute
+  HomeIndexRoute: typeof HomeIndexRoute
+}
+
+const HomeRouteRouteChildren: HomeRouteRouteChildren = {
+  HomeDashboardRoute: HomeDashboardRoute,
+  HomeForecastsRoute: HomeForecastsRoute,
+  HomeIndexRoute: HomeIndexRoute,
+}
+
+const HomeRouteRouteWithChildren = HomeRouteRoute._addFileChildren(
+  HomeRouteRouteChildren,
+)
+
+interface PostsRouteRouteChildren {
+  PostsPostIdRoute: typeof PostsPostIdRoute
+  PostsIndexRoute: typeof PostsIndexRoute
+}
+
+const PostsRouteRouteChildren: PostsRouteRouteChildren = {
+  PostsPostIdRoute: PostsPostIdRoute,
+  PostsIndexRoute: PostsIndexRoute,
+}
+
+const PostsRouteRouteWithChildren = PostsRouteRoute._addFileChildren(
+  PostsRouteRouteChildren,
+)
+
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/home': typeof HomeRouteRouteWithChildren
+  '/posts': typeof PostsRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/login': typeof authLoginRoute
+  '/home/dashboard': typeof HomeDashboardRoute
+  '/home/forecasts': typeof HomeForecastsRoute
+  '/posts/$postId': typeof PostsPostIdRoute
+  '/home/': typeof HomeIndexRoute
+  '/posts/': typeof PostsIndexRoute
+}
+
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/login': typeof authLoginRoute
+  '/home/dashboard': typeof HomeDashboardRoute
+  '/home/forecasts': typeof HomeForecastsRoute
+  '/posts/$postId': typeof PostsPostIdRoute
+  '/home': typeof HomeIndexRoute
+  '/posts': typeof PostsIndexRoute
+}
+
+export interface FileRoutesById {
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/home': typeof HomeRouteRouteWithChildren
+  '/posts': typeof PostsRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/login': typeof authLoginRoute
+  '/home/dashboard': typeof HomeDashboardRoute
+  '/home/forecasts': typeof HomeForecastsRoute
+  '/posts/$postId': typeof PostsPostIdRoute
+  '/home/': typeof HomeIndexRoute
+  '/posts/': typeof PostsIndexRoute
+}
+
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/home'
+    | '/posts'
+    | '/about'
+    | '/login'
+    | '/home/dashboard'
+    | '/home/forecasts'
+    | '/posts/$postId'
+    | '/home/'
+    | '/posts/'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/about'
+    | '/login'
+    | '/home/dashboard'
+    | '/home/forecasts'
+    | '/posts/$postId'
+    | '/home'
+    | '/posts'
+  id:
+    | '__root__'
+    | '/'
+    | '/home'
+    | '/posts'
+    | '/about'
+    | '/login'
+    | '/home/dashboard'
+    | '/home/forecasts'
+    | '/posts/$postId'
+    | '/home/'
+    | '/posts/'
+  fileRoutesById: FileRoutesById
+}
+
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  HomeRouteRoute: typeof HomeRouteRouteWithChildren
+  PostsRouteRoute: typeof PostsRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  authLoginRoute: typeof authLoginRoute
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  HomeRouteRoute: HomeRouteRouteWithChildren,
+  PostsRouteRoute: PostsRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+  authLoginRoute: authLoginRoute,
+}
+
+export const routeTree = rootRoute
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* prettier-ignore-end */
 

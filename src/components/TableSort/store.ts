@@ -1,18 +1,13 @@
 import { keys } from '@mantine/core'
-import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { atom, useAtom, useAtomValue } from 'jotai'
 import { tableData } from './tableData'
 import type { OrderType, RowData } from './types'
 
 const data = atom(tableData)
 const search = atom('')
-const sortOrder = atom<OrderType>('asc')
-const sortBy = atom<keyof RowData>('date')
-const sort = atom((get) => ({ order: get(sortOrder), sortBy: get(sortBy) }))
-const setSortBy = atom(null, (get, set, value: keyof RowData) => {
-  const nextOrder =
-    get(sortBy) !== value ? 'asc' : get(sortOrder) === 'asc' ? 'desc' : 'asc'
-  set(sortOrder, nextOrder)
-  set(sortBy, value)
+const sort = atom<{ order: OrderType; field: keyof RowData }>({
+  order: 'asc',
+  field: 'date',
 })
 
 const filteredData = atom((get) => {
@@ -24,25 +19,26 @@ const filteredData = atom((get) => {
 
 const displayedData = atom((get) => {
   const filteredDataValue = get(filteredData)
-  const { order, sortBy } = get(sort)
+  const { order, field } = get(sort)
 
   return filteredDataValue.slice().sort((a, b) => {
     if (order === 'asc') {
-      return a[sortBy].localeCompare(b[sortBy])
+      return a[field].localeCompare(b[field])
     }
 
-    return b[sortBy].localeCompare(a[sortBy])
+    return b[field].localeCompare(a[field])
   })
 })
 
 export const useStore = () => {
   const [_search, _setSearch] = useAtom(search)
+  const [_sort, _setSort] = useAtom(sort)
 
   return {
     search: _search,
     setSearch: _setSearch,
-    sort: useAtomValue(sort),
-    setSortBy: useSetAtom(setSortBy),
+    sort: _sort,
+    setSort: _setSort,
     displayedData: useAtomValue(displayedData),
   }
 }

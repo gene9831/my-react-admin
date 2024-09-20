@@ -58,11 +58,23 @@ const columns: Array<{ label: string; field: keyof RowData }> = [
 ]
 
 export function TableSort() {
-  const { search, setSearch, sort, setSortBy, displayedData } = useStore()
+  const { search, setSearch, sort, setSort, displayedData } = useStore()
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget
     setSearch(value)
+  }
+
+  const handleSort = (sortBy: keyof RowData) => {
+    const { order, field } = sort
+    const fieldChanged = field !== sortBy
+    const reverseOrder = (o: OrderType): OrderType =>
+      o === 'asc' ? 'desc' : 'asc'
+
+    setSort({
+      order: fieldChanged ? 'asc' : reverseOrder(order),
+      field: sortBy,
+    })
   }
 
   const rows = displayedData.map((row) => (
@@ -98,10 +110,9 @@ export function TableSort() {
             {columns.map(({ label, field }) => (
               <Th
                 key={field}
-                sorted={sort.sortBy === field}
+                sorted={sort.field === field}
                 order={sort.order}
-                // TODO 这里似乎不满足纯函数原则，相同field输入会引起不同结果
-                onSort={() => setSortBy(field)}
+                onSort={() => handleSort(field)}
               >
                 {label}
               </Th>

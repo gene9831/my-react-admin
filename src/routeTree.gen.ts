@@ -18,6 +18,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as PostsIndexImport } from './routes/posts/index'
 import { Route as HomeIndexImport } from './routes/home/index'
 import { Route as PostsPostIdImport } from './routes/posts/$postId'
+import { Route as HomeOutlookImport } from './routes/home/outlook'
 import { Route as HomeForecastsImport } from './routes/home/forecasts'
 import { Route as HomeDashboardImport } from './routes/home/dashboard'
 import { Route as authLoginImport } from './routes/(auth)/login'
@@ -57,6 +58,11 @@ const HomeIndexRoute = HomeIndexImport.update({
 const PostsPostIdRoute = PostsPostIdImport.update({
   path: '/$postId',
   getParentRoute: () => PostsRouteRoute,
+} as any)
+
+const HomeOutlookRoute = HomeOutlookImport.update({
+  path: '/outlook',
+  getParentRoute: () => HomeRouteRoute,
 } as any)
 
 const HomeForecastsRoute = HomeForecastsImport.update({
@@ -127,6 +133,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeForecastsImport
       parentRoute: typeof HomeRouteImport
     }
+    '/home/outlook': {
+      id: '/home/outlook'
+      path: '/outlook'
+      fullPath: '/home/outlook'
+      preLoaderRoute: typeof HomeOutlookImport
+      parentRoute: typeof HomeRouteImport
+    }
     '/posts/$postId': {
       id: '/posts/$postId'
       path: '/$postId'
@@ -156,12 +169,14 @@ declare module '@tanstack/react-router' {
 interface HomeRouteRouteChildren {
   HomeDashboardRoute: typeof HomeDashboardRoute
   HomeForecastsRoute: typeof HomeForecastsRoute
+  HomeOutlookRoute: typeof HomeOutlookRoute
   HomeIndexRoute: typeof HomeIndexRoute
 }
 
 const HomeRouteRouteChildren: HomeRouteRouteChildren = {
   HomeDashboardRoute: HomeDashboardRoute,
   HomeForecastsRoute: HomeForecastsRoute,
+  HomeOutlookRoute: HomeOutlookRoute,
   HomeIndexRoute: HomeIndexRoute,
 }
 
@@ -191,6 +206,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof authLoginRoute
   '/home/dashboard': typeof HomeDashboardRoute
   '/home/forecasts': typeof HomeForecastsRoute
+  '/home/outlook': typeof HomeOutlookRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/home/': typeof HomeIndexRoute
   '/posts/': typeof PostsIndexRoute
@@ -202,6 +218,7 @@ export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
   '/home/dashboard': typeof HomeDashboardRoute
   '/home/forecasts': typeof HomeForecastsRoute
+  '/home/outlook': typeof HomeOutlookRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/home': typeof HomeIndexRoute
   '/posts': typeof PostsIndexRoute
@@ -216,6 +233,7 @@ export interface FileRoutesById {
   '/login': typeof authLoginRoute
   '/home/dashboard': typeof HomeDashboardRoute
   '/home/forecasts': typeof HomeForecastsRoute
+  '/home/outlook': typeof HomeOutlookRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/home/': typeof HomeIndexRoute
   '/posts/': typeof PostsIndexRoute
@@ -231,6 +249,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/home/dashboard'
     | '/home/forecasts'
+    | '/home/outlook'
     | '/posts/$postId'
     | '/home/'
     | '/posts/'
@@ -241,6 +260,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/home/dashboard'
     | '/home/forecasts'
+    | '/home/outlook'
     | '/posts/$postId'
     | '/home'
     | '/posts'
@@ -253,6 +273,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/home/dashboard'
     | '/home/forecasts'
+    | '/home/outlook'
     | '/posts/$postId'
     | '/home/'
     | '/posts/'
@@ -302,6 +323,7 @@ export const routeTree = rootRoute
       "children": [
         "/home/dashboard",
         "/home/forecasts",
+        "/home/outlook",
         "/home/"
       ]
     },
@@ -324,6 +346,10 @@ export const routeTree = rootRoute
     },
     "/home/forecasts": {
       "filePath": "home/forecasts.tsx",
+      "parent": "/home"
+    },
+    "/home/outlook": {
+      "filePath": "home/outlook.tsx",
       "parent": "/home"
     },
     "/posts/$postId": {

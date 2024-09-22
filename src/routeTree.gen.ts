@@ -18,6 +18,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as PostsIndexImport } from './routes/posts/index'
 import { Route as HomeIndexImport } from './routes/home/index'
 import { Route as PostsPostIdImport } from './routes/posts/$postId'
+import { Route as HomeRealTimeImport } from './routes/home/real-time'
 import { Route as HomeOutlookImport } from './routes/home/outlook'
 import { Route as HomeForecastsImport } from './routes/home/forecasts'
 import { Route as HomeDashboardImport } from './routes/home/dashboard'
@@ -58,6 +59,11 @@ const HomeIndexRoute = HomeIndexImport.update({
 const PostsPostIdRoute = PostsPostIdImport.update({
   path: '/$postId',
   getParentRoute: () => PostsRouteRoute,
+} as any)
+
+const HomeRealTimeRoute = HomeRealTimeImport.update({
+  path: '/real-time',
+  getParentRoute: () => HomeRouteRoute,
 } as any)
 
 const HomeOutlookRoute = HomeOutlookImport.update({
@@ -140,6 +146,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeOutlookImport
       parentRoute: typeof HomeRouteImport
     }
+    '/home/real-time': {
+      id: '/home/real-time'
+      path: '/real-time'
+      fullPath: '/home/real-time'
+      preLoaderRoute: typeof HomeRealTimeImport
+      parentRoute: typeof HomeRouteImport
+    }
     '/posts/$postId': {
       id: '/posts/$postId'
       path: '/$postId'
@@ -170,6 +183,7 @@ interface HomeRouteRouteChildren {
   HomeDashboardRoute: typeof HomeDashboardRoute
   HomeForecastsRoute: typeof HomeForecastsRoute
   HomeOutlookRoute: typeof HomeOutlookRoute
+  HomeRealTimeRoute: typeof HomeRealTimeRoute
   HomeIndexRoute: typeof HomeIndexRoute
 }
 
@@ -177,6 +191,7 @@ const HomeRouteRouteChildren: HomeRouteRouteChildren = {
   HomeDashboardRoute: HomeDashboardRoute,
   HomeForecastsRoute: HomeForecastsRoute,
   HomeOutlookRoute: HomeOutlookRoute,
+  HomeRealTimeRoute: HomeRealTimeRoute,
   HomeIndexRoute: HomeIndexRoute,
 }
 
@@ -207,6 +222,7 @@ export interface FileRoutesByFullPath {
   '/home/dashboard': typeof HomeDashboardRoute
   '/home/forecasts': typeof HomeForecastsRoute
   '/home/outlook': typeof HomeOutlookRoute
+  '/home/real-time': typeof HomeRealTimeRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/home/': typeof HomeIndexRoute
   '/posts/': typeof PostsIndexRoute
@@ -219,6 +235,7 @@ export interface FileRoutesByTo {
   '/home/dashboard': typeof HomeDashboardRoute
   '/home/forecasts': typeof HomeForecastsRoute
   '/home/outlook': typeof HomeOutlookRoute
+  '/home/real-time': typeof HomeRealTimeRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/home': typeof HomeIndexRoute
   '/posts': typeof PostsIndexRoute
@@ -234,6 +251,7 @@ export interface FileRoutesById {
   '/home/dashboard': typeof HomeDashboardRoute
   '/home/forecasts': typeof HomeForecastsRoute
   '/home/outlook': typeof HomeOutlookRoute
+  '/home/real-time': typeof HomeRealTimeRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/home/': typeof HomeIndexRoute
   '/posts/': typeof PostsIndexRoute
@@ -250,6 +268,7 @@ export interface FileRouteTypes {
     | '/home/dashboard'
     | '/home/forecasts'
     | '/home/outlook'
+    | '/home/real-time'
     | '/posts/$postId'
     | '/home/'
     | '/posts/'
@@ -261,6 +280,7 @@ export interface FileRouteTypes {
     | '/home/dashboard'
     | '/home/forecasts'
     | '/home/outlook'
+    | '/home/real-time'
     | '/posts/$postId'
     | '/home'
     | '/posts'
@@ -274,6 +294,7 @@ export interface FileRouteTypes {
     | '/home/dashboard'
     | '/home/forecasts'
     | '/home/outlook'
+    | '/home/real-time'
     | '/posts/$postId'
     | '/home/'
     | '/posts/'
@@ -324,6 +345,7 @@ export const routeTree = rootRoute
         "/home/dashboard",
         "/home/forecasts",
         "/home/outlook",
+        "/home/real-time",
         "/home/"
       ]
     },
@@ -350,6 +372,10 @@ export const routeTree = rootRoute
     },
     "/home/outlook": {
       "filePath": "home/outlook.tsx",
+      "parent": "/home"
+    },
+    "/home/real-time": {
+      "filePath": "home/real-time.tsx",
       "parent": "/home"
     },
     "/posts/$postId": {

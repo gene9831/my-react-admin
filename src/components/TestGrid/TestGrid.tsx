@@ -1,6 +1,14 @@
+import { DateInput } from '@mantine/dates'
 import * as classes from './TestGrid.css'
+import { IconCalendarMonth } from '@tabler/icons-react'
 
-const weekday = ['周一', '周二', '周三', '周四', '周五'] as const
+const weekday = [
+  '2024-07-01|周一',
+  '2024-07-02|周二',
+  '2024-07-03|周三',
+  '2024-07-04|周四',
+  '2024-07-05|周五',
+] as const
 
 const calc = (s: string) => {
   const [start, end] = s.split('/').map((i) => parseInt(i))
@@ -17,8 +25,13 @@ export function TestGrid() {
   const cells = Array.from({ length: 50 }).map((_, i) => {
     if (i % 10 === 0) {
       return (
-        <div className={classes.item} key={i}>
-          {weekday[Math.floor(i / 9)]}
+        <div
+          className={classes.item}
+          style={{ flexDirection: 'column' }}
+          key={i}
+        >
+          <span> {weekday[Math.floor(i / 9)].split('|')[1]}</span>
+          <span>{weekday[Math.floor(i / 9)].split('|')[0]}</span>
         </div>
       )
     }
@@ -28,8 +41,13 @@ export function TestGrid() {
   const cells2 = Array.from({ length: 10 }).map((_, i) => {
     if (i % 2 === 0) {
       return (
-        <div className={classes.item} key={i}>
-          {weekday[Math.floor(i / 2)]}
+        <div
+          className={classes.item}
+          style={{ flexDirection: 'column' }}
+          key={i}
+        >
+          <span>{weekday[Math.floor(i / 2)].split('|')[1]}</span>
+          <span>{weekday[Math.floor(i / 2)].split('|')[0]}</span>
         </div>
       )
     }
@@ -39,6 +57,29 @@ export function TestGrid() {
   return (
     <>
       <h3 className={classes.h3}>出勤人员表</h3>
+      <div className={classes.inputContainer}>
+        <DateInput
+          valueFormat="YYYY/MM/DD"
+          label="请选择开始日期"
+          placeholder="请选择开始日期"
+          rightSection={<IconCalendarMonth />}
+          locale="zh"
+          classNames={{
+            root: classes.dateInputRoot,
+            label: classes.dateInputLabel,
+          }}
+        />
+        <DateInput
+          valueFormat="YYYY/MM/DD"
+          label="请选择结束日期"
+          placeholder="请选择结束日期"
+          rightSection={<IconCalendarMonth />}
+          classNames={{
+            root: classes.dateInputRoot,
+            label: classes.dateInputLabel,
+          }}
+        />
+      </div>
       <div className={classes.grid2}>
         {cells2}
         <div className={classes.personx1} style={{ gridArea: '1/2/2/3' }}>
@@ -64,6 +105,29 @@ export function TestGrid() {
         </div>
       </div>
       <h3 className={classes.h3}>出勤明细表</h3>
+      <div className={classes.inputContainer}>
+        <DateInput
+          valueFormat="YYYY/MM/DD"
+          label="请选择开始日期"
+          placeholder="请选择开始日期"
+          locale="zh"
+          rightSection={<IconCalendarMonth />}
+          classNames={{
+            root: classes.dateInputRoot,
+            label: classes.dateInputLabel,
+          }}
+        />
+        <DateInput
+          valueFormat="YYYY/MM/DD"
+          label="请选择结束日期"
+          placeholder="请选择结束日期"
+          rightSection={<IconCalendarMonth />}
+          classNames={{
+            root: classes.dateInputRoot,
+            label: classes.dateInputLabel,
+          }}
+        />
+      </div>
       <div className={classes.grid}>
         {heads}
         {cells}

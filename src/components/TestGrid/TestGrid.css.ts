@@ -6,10 +6,27 @@ export const h3 = style({
   textAlign: 'center',
 })
 
+export const inputContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: vars.spacing.lg,
+  marginBottom: vars.spacing.md,
+})
+
+export const dateInputRoot = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: vars.spacing.sm,
+})
+
+export const dateInputLabel = style({
+  fontSize: vars.fontSizes.md,
+})
+
 export const grid2 = style({
   display: 'grid',
-  gridTemplateColumns: `${rem(64)} repeat(1, 1fr)`,
-  gridTemplateRows: `repeat(5, ${rem(48)})`,
+  gridTemplateColumns: `${rem(96)} repeat(1, 1fr)`,
+  gridTemplateRows: `repeat(5, ${rem(56)})`,
   borderLeft: `${rem(1)} solid black`,
   borderTop: `${rem(1)} solid black`,
   position: 'relative',
@@ -20,13 +37,14 @@ const personx = style({
   position: 'absolute',
   margin: vars.spacing.xs,
   borderRadius: '1000rem',
-  padding: `${rem(4)} ${vars.spacing.xs}`,
+  padding: `${rem(4)} ${vars.spacing.md}`,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   whiteSpace: 'nowrap',
   fontSize: vars.fontSizes.xs,
   textShadow: `2px 2px 4px rgba(0, 0, 0, 0.5)`,
+  height: rem(32),
 })
 
 export const personx1 = style([
@@ -40,7 +58,7 @@ export const personx2 = style([
   personx,
   {
     backgroundColor: vars.colors.yellow.filled,
-    left: rem(60),
+    left: rem(70),
   },
 ])
 
@@ -48,7 +66,7 @@ export const personx3 = style([
   personx,
   {
     backgroundColor: vars.colors.green.filled,
-    left: rem(60 * 2),
+    left: rem(70 * 2),
   },
 ])
 
@@ -56,14 +74,14 @@ export const personx4 = style([
   personx,
   {
     backgroundColor: vars.colors.orange.filled,
-    left: rem(60 * 3),
+    left: rem(70 * 3),
   },
 ])
 
 export const grid = style({
   display: 'grid',
-  gridTemplateColumns: `${rem(64)} repeat(9, 1fr)`,
-  gridTemplateRows: `${rem(48)} repeat(5, ${rem(102)})`,
+  gridTemplateColumns: `${rem(96)} repeat(9, 1fr)`,
+  gridTemplateRows: `${rem(56)} repeat(5, ${rem(102)})`,
   borderLeft: `${rem(1)} solid black`,
   borderTop: `${rem(1)} solid black`,
   position: 'relative',

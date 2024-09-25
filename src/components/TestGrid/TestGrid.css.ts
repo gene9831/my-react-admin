@@ -139,3 +139,11 @@ export const person4 = style([
     top: `calc(${rem(36)} + ${vars.spacing.xs})`,
   },
 ])
+
+export const workListBox = style({
+  flex: 1,
+  border: `${rem(1)} solid ${vars.colors.defaultBorder}`,
+  borderRadius: vars.radius.sm,
+  padding: vars.spacing.xs,
+  fontSize: vars.fontSizes.sm,
+})

@@ -1,6 +1,24 @@
+import {
+  Button,
+  Center,
+  Checkbox,
+  Flex,
+  Modal,
+  Select,
+  Space,
+  Stack,
+  Text,
+  ThemeIcon,
+  UnstyledButton,
+} from '@mantine/core'
 import { DateInput } from '@mantine/dates'
+import { useDisclosure } from '@mantine/hooks'
+import {
+  IconCalendarMonth,
+  IconChevronLeft,
+  IconChevronRight,
+} from '@tabler/icons-react'
 import * as classes from './TestGrid.css'
-import { IconCalendarMonth } from '@tabler/icons-react'
 
 const weekday = [
   '2024-07-01|周一',
@@ -54,6 +72,8 @@ export function TestGrid() {
     return <div className={classes.item} key={i}></div>
   })
 
+  const [opened, { open, close }] = useDisclosure(false)
+
   return (
     <>
       <h3 className={classes.h3}>出勤人员表</h3>
@@ -63,7 +83,6 @@ export function TestGrid() {
           label="请选择开始日期"
           placeholder="请选择开始日期"
           rightSection={<IconCalendarMonth />}
-          locale="zh"
           classNames={{
             root: classes.dateInputRoot,
             label: classes.dateInputLabel,
@@ -162,6 +181,106 @@ export function TestGrid() {
           员工4 {calc('4/7')}
         </div>
       </div>
+      <Space h="lg"></Space>
+      <Modal
+        size="lg"
+        opened={opened}
+        onClose={close}
+        title="添加安排"
+        centered
+      >
+        <Flex gap="sm">
+          <Select
+            label="开始时间"
+            data={Array.from({ length: 8 }).map((_, i) => `${i + 9}:00`)}
+            style={{ flex: 1 }}
+          />
+          <Select
+            label="结束时间"
+            data={Array.from({ length: 8 }).map((_, i) => `${i + 10}:00`)}
+            style={{ flex: 1 }}
+          />
+        </Flex>
+        <Space h="md"></Space>
+        <Flex gap="sm">
+          <Stack className={classes.workListBox} gap="sm">
+            <Text size="sm">可选项</Text>
+            <Text size="xs" c="dimmed">
+              当前部门员工
+            </Text>
+            {['员工1', '员工2'].map((item) => (
+              <Flex key={item} gap="sm">
+                <Checkbox></Checkbox>
+                <Text size="sm">{item}</Text>
+              </Flex>
+            ))}
+            {['员工3', '员工4'].map((item) => (
+              <Flex key={item} gap="sm">
+                <Checkbox disabled></Checkbox>
+                <Text size="sm" c="gray">
+                  {item}（已有安排）
+                </Text>
+              </Flex>
+            ))}
+            <Text size="xs" c="dimmed">
+              其他部门员工
+            </Text>
+            <Flex gap="sm">
+              <Checkbox></Checkbox>
+              <Text size="sm" c="yellow">
+                其他部门员工1（忙碌中）
+              </Text>
+            </Flex>
+            <Flex gap="sm">
+              <Checkbox></Checkbox>
+              <Text size="sm">其他部门员工2</Text>
+            </Flex>
+          </Stack>
+          <Center>
+            <Flex gap="xs">
+              <ThemeIcon>
+                <UnstyledButton>
+                  <IconChevronLeft />
+                </UnstyledButton>
+              </ThemeIcon>
+              <ThemeIcon>
+                <UnstyledButton>
+                  <IconChevronRight />
+                </UnstyledButton>
+              </ThemeIcon>
+            </Flex>
+          </Center>
+          <Stack className={classes.workListBox} gap="sm">
+            <Text size="sm">已选择员工</Text>
+            <Text size="xs" c="dimmed">
+              当前部门员工
+            </Text>
+            {['员工1'].map((item) => (
+              <Flex key={item} gap="sm">
+                <Checkbox></Checkbox>
+                <span>{item}</span>
+              </Flex>
+            ))}
+            <Text size="xs" c="dimmed">
+              其他部门员工
+            </Text>
+            <Flex gap="sm">
+              <Checkbox></Checkbox>
+              <Text size="sm" c="yellow">
+                其他部门员工1（忙碌中）
+              </Text>
+            </Flex>
+          </Stack>
+        </Flex>
+        <Space h="md"></Space>
+        <Flex gap="md" justify="flex-end">
+          <Button variant="default" style={{ fontWeight: 'normal' }}>
+            取消
+          </Button>
+          <Button style={{ fontWeight: 'normal' }}>确定</Button>
+        </Flex>
+      </Modal>
+      <Button onClick={open}>添加安排</Button>
     </>
   )
 }

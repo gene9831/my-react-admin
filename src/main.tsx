@@ -1,10 +1,13 @@
 import { MantineProvider } from '@mantine/core'
 import '@mantine/core/styles.css'
+import { DatesProvider } from '@mantine/dates'
 import '@mantine/dates/styles.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { createRouter, RouterProvider } from '@tanstack/react-router'
+import 'dayjs/locale/zh-cn'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
+import { providerFactory, Providers } from './components'
 import './index.css'
 import { routeTree } from './routeTree.gen'
 import { cssVariablesResolver, theme } from './theme'
@@ -24,20 +27,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+const providers = [
+  providerFactory(MantineProvider, { theme, cssVariablesResolver }),
+  providerFactory(DatesProvider, { settings: { locale: 'zh-cn' } }),
+  providerFactory(QueryClientProvider, { client: queryClient }),
+]
+
 // Render the app
 const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <MantineProvider
-        theme={theme}
-        cssVariablesResolver={cssVariablesResolver}
-      >
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-        </QueryClientProvider>
-      </MantineProvider>
+      <Providers providers={providers}>
+        <RouterProvider router={router} />
+      </Providers>
     </StrictMode>,
   )
 }

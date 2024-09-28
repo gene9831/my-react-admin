@@ -6,11 +6,16 @@ export const h3 = style({
   textAlign: 'center',
 })
 
+export const toolsContainer = style({
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  marginBottom: vars.spacing.md,
+  marginTop: vars.spacing.md,
+})
+
 export const inputContainer = style({
-  display: 'flex',
   alignItems: 'center',
   gap: vars.spacing.lg,
-  marginBottom: vars.spacing.md,
 })
 
 export const dateInputRoot = style({
@@ -23,73 +28,30 @@ export const dateInputLabel = style({
   fontSize: vars.fontSizes.md,
 })
 
-export const grid2 = style({
-  display: 'grid',
-  gridTemplateColumns: `${rem(96)} repeat(1, 1fr)`,
-  gridTemplateRows: `repeat(5, ${rem(56)})`,
-  borderLeft: `${rem(1)} solid black`,
-  borderTop: `${rem(1)} solid black`,
-  position: 'relative',
+export const table1Cell1 = style({
+  textWrap: 'nowrap',
 })
 
-const personx = style({
-  color: 'white',
-  position: 'absolute',
-  margin: vars.spacing.xs,
-  borderRadius: '1000rem',
-  padding: `${rem(4)} ${vars.spacing.md}`,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  whiteSpace: 'nowrap',
-  fontSize: vars.fontSizes.xs,
+export const table1Cell2 = style({
+  textWrap: 'nowrap',
+  color: vars.colors.white,
   textShadow: `2px 2px 4px rgba(0, 0, 0, 0.5)`,
-  height: rem(32),
+  textAlign: 'center',
 })
-
-export const personx1 = style([
-  personx,
-  {
-    backgroundColor: vars.colors.blue.filled,
-  },
-])
-
-export const personx2 = style([
-  personx,
-  {
-    backgroundColor: vars.colors.yellow.filled,
-    left: rem(70),
-  },
-])
-
-export const personx3 = style([
-  personx,
-  {
-    backgroundColor: vars.colors.green.filled,
-    left: rem(70 * 2),
-  },
-])
-
-export const personx4 = style([
-  personx,
-  {
-    backgroundColor: vars.colors.orange.filled,
-    left: rem(70 * 3),
-  },
-])
 
 export const grid = style({
   display: 'grid',
   gridTemplateColumns: `${rem(96)} repeat(9, 1fr)`,
-  gridTemplateRows: `${rem(56)} repeat(5, ${rem(102)})`,
-  borderLeft: `${rem(1)} solid black`,
-  borderTop: `${rem(1)} solid black`,
+  gridTemplateRows: `${rem(56)} ${rem(56)} ${rem(56)} ${rem(102)} ${rem(56)}`,
+  borderLeft: `${rem(1)} solid ${vars.colors.defaultBorder}`,
+  borderTop: `${rem(1)} solid ${vars.colors.defaultBorder}`,
   position: 'relative',
+  fontSize: vars.fontSizes.sm,
 })
 
 export const item = style({
-  borderRight: `${rem(1)} solid black`,
-  borderBottom: `${rem(1)} solid black`,
+  borderRight: `${rem(1)} solid ${vars.colors.defaultBorder}`,
+  borderBottom: `${rem(1)} solid ${vars.colors.defaultBorder}`,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -120,7 +82,7 @@ export const person1 = style([
 export const person2 = style([
   person,
   {
-    backgroundColor: vars.colors.yellow.filled,
+    backgroundColor: vars.colors.green.filled,
     top: `calc(${rem(36)} + ${vars.spacing.xs})`,
   },
 ])
@@ -128,15 +90,7 @@ export const person2 = style([
 export const person3 = style([
   person,
   {
-    backgroundColor: vars.colors.green.filled,
-  },
-])
-
-export const person4 = style([
-  person,
-  {
-    backgroundColor: vars.colors.orange.filled,
-    top: `calc(${rem(36)} + ${vars.spacing.xs})`,
+    backgroundColor: vars.colors.yellow.filled,
   },
 ])
 

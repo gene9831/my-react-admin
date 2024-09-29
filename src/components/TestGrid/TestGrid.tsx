@@ -1,8 +1,10 @@
 import {
+  Badge,
   Button,
   Center,
   Checkbox,
   Flex,
+  Indicator,
   Modal,
   ScrollArea,
   Select,
@@ -160,13 +162,25 @@ export function TestGrid() {
                 {worker.data.map((n, i) => (
                   <Table.Td
                     key={i}
-                    bg={n === 1 ? worker.color : undefined}
+                    bg={n !== 3 ? worker.color : undefined}
                     className={classes.table1Cell2}
-                    style={{
-                      background: getStyle(worker, n),
-                    }}
+                    style={
+                      {
+                        // background: getStyle(worker, n),
+                      }
+                    }
                   >
-                    {n === 2 ? '夜班' : n === 3 ? '休息' : ''}
+                    {n === 2 ? (
+                      <Badge fw="normal" size="lg" color="dark">
+                        夜班
+                      </Badge>
+                    ) : n === 3 ? (
+                      <Badge fw="normal" size="lg" color='gray'>
+                        休息
+                      </Badge>
+                    ) : (
+                      ''
+                    )}
                   </Table.Td>
                 ))}
               </Table.Tr>

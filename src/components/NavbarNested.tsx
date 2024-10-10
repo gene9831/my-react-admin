@@ -2,7 +2,7 @@ import { ScrollArea } from '@mantine/core'
 import { useLocation } from '@tanstack/react-router'
 import type { LinksGroupProps } from './LinksGroup'
 import { LinksGroup } from './LinksGroup'
-import * as classes from './NavbarNested.css'
+import classes from './NavbarNested.module.css'
 
 export interface NavbarNestedProps {
   linksGroup: LinksGroupProps[]

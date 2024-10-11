@@ -33,3 +33,9 @@ jobs:
         run: |
           TIMESTAMP=$(TZ="Asia/Shanghai" date +'%Y%m%d%H%M%S')
           tar -czf build_${TIMESTAMP}.tar.gz dist/
+
+      - name: Upload production artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build_${TIMESTAMP}.tar.gz
+          path: build_${TIMESTAMP}.tar.gz

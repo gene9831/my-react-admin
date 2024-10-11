@@ -8,13 +8,11 @@ const active = style({
       textDecoration: 'none',
       backgroundColor: vars.colors.defaultHover,
     },
-    '[data-mantine-color-scheme] &[data-active]': {
+    '&[data-active]': {
+      color: vars.colors.primaryColors[8],
       backgroundColor: vars.colors.primaryColors.lightHover,
     },
-    [`${vars.lightSelector}&[data-active]`]: {
-      color: vars.colors.primaryColors[8],
-    },
-    [`${vars.darkSelector}&[data-active]`]: {
+    [`${vars.darkSelector}[data-active]`]: {
       color: vars.colors.primaryColors[1],
     },
   },
@@ -41,14 +39,12 @@ export const link = style([
     marginLeft: vars.spacing.xl,
     fontSize: vars.fontSizes.sm,
     borderLeft: `${rem(1)} solid ${vars.colors.defaultBorder}`,
+    color: vars.colors.textSecondary,
     selectors: {
-      [vars.lightSelector]: {
-        color: vars.colors.textSecondary,
-      },
       [vars.darkSelector]: {
         color: vars.colors.text,
       },
-      '[data-mantine-color-scheme] &[data-active]': {
+      '&[data-active]': {
         fontWeight: 600,
         borderLeftColor: vars.colors.primaryColors[5],
       },

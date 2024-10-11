@@ -7,10 +7,8 @@ export const button = style({
   height: rem(34),
   borderRadius: vars.radius.md,
   borderColor: vars.colors.defaultBorder,
+  color: vars.colors.textSecondary,
   selectors: {
-    [vars.lightSelector]: {
-      color: vars.colors.textSecondary,
-    },
     [vars.darkSelector]: {
       color: vars.colors.white,
     },

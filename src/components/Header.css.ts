@@ -1,10 +1,11 @@
+import { TOOLBAR_HEIGHT } from '@/constants/style'
 import { vars } from '@/theme'
 import { rem } from '@mantine/core'
 import { style } from '@vanilla-extract/css'
 
 export const header = style({
   width: '100%',
-  height: rem(56),
+  height: rem(TOOLBAR_HEIGHT),
   backgroundColor: vars.colors.default,
   borderBottom: `${rem(1)} solid ${vars.colors.defaultBorder}`,
   position: 'fixed',
@@ -34,7 +35,7 @@ export const link = style({
       textDecoration: 'none',
       backgroundColor: vars.colors.defaultHover,
     },
-    '[data-mantine-color-scheme] &[data-active]': {
+    '&[data-active]': {
       backgroundColor: vars.colors.primary,
       color: vars.colors.white,
     },

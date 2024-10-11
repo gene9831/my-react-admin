@@ -2,7 +2,7 @@ import { Anchor, Container, Group, rem } from '@mantine/core'
 import { Link, useLocation } from '@tanstack/react-router'
 import { useMemo } from 'react'
 import { ColorSchemaIcon } from './ColorSchemaIcon.tsx'
-import * as classes from './Header.css.ts'
+import * as classes from './Header.css'
 import { Logo } from './Logo.tsx'
 
 export interface HeaderProps {

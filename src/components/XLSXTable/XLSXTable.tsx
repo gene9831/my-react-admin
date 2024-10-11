@@ -10,7 +10,8 @@ const createSheet = () => {
 
   for (let i = 1; i <= 8; ++i) {
     const r: XLSX.ColInfo = {}
-    if (data[0][i] != null) (ws['!cols'][i] = r).wpx = data[0][i]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (data[0][i] != null) (ws['!cols'][i] = r as any).wpx = data[0][i]
   }
   console.log(ws)
   return ws

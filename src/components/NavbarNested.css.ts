@@ -1,16 +1,17 @@
+import { SIDEBAR_WIDTH, TOOLBAR_HEIGHT } from '@/constants/style'
 import { vars } from '@/theme'
 import { rem } from '@mantine/core'
 import { style } from '@vanilla-extract/css'
 
 export const navbar = style({
-  width: rem(300),
+  width: rem(SIDEBAR_WIDTH),
   backgroundColor: vars.colors.default,
   padding: vars.spacing.md,
   borderRight: `${rem(1)} solid ${vars.colors.defaultBorder}`,
   display: 'flex',
   flexDirection: 'column',
   position: 'fixed',
-  top: rem(56),
+  top: rem(TOOLBAR_HEIGHT),
   left: 0,
   bottom: 0,
 })

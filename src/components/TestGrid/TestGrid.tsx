@@ -4,7 +4,6 @@ import {
   Center,
   Checkbox,
   Flex,
-  Indicator,
   Modal,
   ScrollArea,
   Select,
@@ -63,18 +62,6 @@ const workers = [
 ]
 
 const workers2 = ['员工1', '员工2', '员工3', '员工4']
-
-const getStyle = (worker: (typeof workers)[number], n: number) => {
-  const color = worker.color === 'blue' ? '#228be6' : '#40c057'
-  const strip = n === 2 ? '#2e2e2e' : '#dee2e6'
-  return `repeating-linear-gradient(
-45deg,
-${color},
-${color} 10px,
-${strip} 10px,
-${strip} 15px
-)`
-}
 
 export function TestGrid() {
   const heads = Array.from({ length: 10 }).map((_, i) => (
@@ -175,7 +162,7 @@ export function TestGrid() {
                         夜班
                       </Badge>
                     ) : n === 3 ? (
-                      <Badge fw="normal" size="lg" color='gray'>
+                      <Badge fw="normal" size="lg" color="gray">
                         休息
                       </Badge>
                     ) : (

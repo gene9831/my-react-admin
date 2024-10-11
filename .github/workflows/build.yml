@@ -32,10 +32,12 @@ jobs:
       - name: Archive production artifact
         run: |
           TIMESTAMP=$(TZ="Asia/Shanghai" date +'%Y%m%d%H%M%S')
-          tar -czf build_${TIMESTAMP}.tar.gz dist/
+          FILENAME="build_${TIMESTAMP}.tar.gz"
+          tar -czf $FILENAME dist/
+          echo "artifact_name=$FILENAME" >> $GITHUB_ENV
 
       - name: Upload production artifact
         uses: actions/upload-artifact@v4
         with:
-          name: build_${TIMESTAMP}.tar.gz
-          path: build_${TIMESTAMP}.tar.gz
+          name: ${{ env.artifact_name }}
+          path: ${{ env.artifact_name }}

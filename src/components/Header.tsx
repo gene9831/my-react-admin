@@ -1,5 +1,6 @@
 import { Anchor, Container, Group, rem } from '@mantine/core'
 import { Link, useLocation } from '@tanstack/react-router'
+import clsx from 'clsx'
 import { useMemo } from 'react'
 import { ColorSchemaIcon } from './ColorSchemaIcon.tsx'
 import * as classes from './Header.css'
@@ -37,8 +38,8 @@ export function Header({ links }: HeaderProps) {
   const matched = links.some((link) => link.link === active)
 
   return (
-    <header className={classes.header}>
-      <Container fluid className={classes.container}>
+    <header className={clsx(classes.header, 'fixed top-0 z-app w-full')}>
+      <Container fluid className="flex h-full items-center justify-between">
         <Group>
           <Logo style={{ width: rem(120) }} />
         </Group>

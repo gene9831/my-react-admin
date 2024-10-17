@@ -4,20 +4,9 @@ import { rem } from '@mantine/core'
 import { style } from '@vanilla-extract/css'
 
 export const header = style({
-  width: '100%',
   height: rem(TOOLBAR_HEIGHT),
   backgroundColor: vars.colors.default,
   borderBottom: `${rem(1)} solid ${vars.colors.defaultBorder}`,
-  position: 'fixed',
-  top: 0,
-  zIndex: 100,
-})
-
-export const container = style({
-  display: 'flex',
-  height: '100%',
-  justifyContent: 'space-between',
-  alignItems: 'center',
 })
 
 export const link = style({

@@ -1,0 +1,4 @@
+{
+  "routeFileIgnorePattern": ".css.ts",
+  "autoCodeSplitting": true
+}

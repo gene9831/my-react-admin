@@ -1,16 +1,23 @@
+import './index.css'
+
+import { MantineProvider } from '@mantine/core'
+import { DatesProvider } from '@mantine/dates'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { createRouter, RouterProvider } from '@tanstack/react-router'
+import 'dayjs/locale/zh-cn'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
+import { providerFactory, Providers } from './components'
+import { routeTree } from './routeTree.gen'
+import { cssVariablesResolver, theme } from './theme'
 
 const queryClient = new QueryClient()
 
-// Import the generated route tree
-import { routeTree } from './routeTree.gen'
-
-// Create a new router instance
-const router = createRouter({ routeTree })
+const router = createRouter({
+  routeTree,
+  context: { queryClient },
+  defaultPreloadStaleTime: 0,
+})
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {
@@ -19,15 +26,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+const providers = [
+  providerFactory(MantineProvider, { theme, cssVariablesResolver }),
+  providerFactory(DatesProvider, { settings: { locale: 'zh-cn' } }),
+  providerFactory(QueryClientProvider, { client: queryClient }),
+]
+
 // Render the app
 const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <QueryClientProvider client={queryClient}>
+      <Providers providers={providers}>
         <RouterProvider router={router} />
-      </QueryClientProvider>
+      </Providers>
     </StrictMode>,
   )
 }

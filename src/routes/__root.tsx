@@ -1,5 +1,11 @@
+import { Header, Main } from '@/components'
+import type { QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import {
+  createRootRouteWithContext,
+  Link,
+  Outlet,
+} from '@tanstack/react-router'
 import React, { Suspense } from 'react'
 
 const TanStackRouterDevtools =
@@ -12,23 +18,35 @@ const TanStackRouterDevtools =
         })),
       )
 
-export const Route = createRootRoute({
-  component: () => (
-    <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
+  {
+    component: RootComponent,
+    notFoundComponent: () => (
+      <div>
+        <p>NotFound</p>
+        <Link to="/home">Go to Home</Link>
       </div>
-      <hr />
-      <Outlet />
+    ),
+  },
+)
+
+const links = [
+  { link: '/home', label: 'Home' },
+  { link: '/posts', label: 'Posts' },
+  { link: '/about', label: 'About' },
+]
+
+function RootComponent() {
+  return (
+    <>
+      <Header links={links} />
+      <Main>
+        <Outlet />
+      </Main>
+      <ReactQueryDevtools />
       <Suspense>
-        <ReactQueryDevtools />
         <TanStackRouterDevtools />
       </Suspense>
     </>
-  ),
-})
+  )
+}

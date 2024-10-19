@@ -2,7 +2,6 @@ import { ScrollArea } from '@mantine/core'
 import { useLocation } from '@tanstack/react-router'
 import type { LinksGroupProps } from './LinksGroup'
 import { LinksGroup } from './LinksGroup'
-import * as classes from './NavbarNested.css'
 
 export interface NavbarNestedProps {
   linksGroup: LinksGroupProps[]
@@ -18,8 +17,10 @@ export function NavbarNested(props: NavbarNestedProps) {
   ))
 
   return (
-    <nav className={classes.navbar}>
-      <ScrollArea className={classes.scrollArea}>{links}</ScrollArea>
+    <nav className="fixed bottom-0 left-0 top-[var(--toolbar-height)] flex w-[var(--sidebar-width)] flex-col border-r bg-[var(--mantine-color-default)]">
+      <ScrollArea className="flex-1" classNames={{ viewport: 'py-md' }}>
+        {links}
+      </ScrollArea>
     </nav>
   )
 }

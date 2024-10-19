@@ -4,7 +4,6 @@ import {
   useMantineColorScheme,
 } from '@mantine/core'
 import { IconMoon, IconSun } from '@tabler/icons-react'
-import * as classes from './ColorSchemaIcon.css'
 
 export function ColorSchemaIcon() {
   const { toggleColorScheme } = useMantineColorScheme()
@@ -14,11 +13,11 @@ export function ColorSchemaIcon() {
 
   return (
     <ActionIcon
-      className={classes.button}
+      className="size-[34px] rounded-md text-gray-700 dark:text-white"
       variant="default"
       onClick={() => toggleColorScheme()}
     >
-      <Icon strokeWidth={1.5} className={classes.icon} />
+      <Icon strokeWidth={1.5} className="size-[22px]" />
     </ActionIcon>
   )
 }

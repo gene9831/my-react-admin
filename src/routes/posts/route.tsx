@@ -12,7 +12,7 @@ function Posts() {
   const { data: posts } = useSuspenseQuery(postsQueryOptions)
 
   return (
-    <div className="p-2 flex gap-2">
+    <div className="flex gap-2 p-2">
       <ul className="list-disc pl-4">
         {[...posts, { id: 'i-do-not-exist', title: 'Non-existent Post' }].map(
           (post) => {

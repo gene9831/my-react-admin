@@ -8,5 +8,12 @@
     "**/*.sass",
     "**/*.less",
     "node_modules/@mantine/core/styles.css"
+  ],
+  "emmet.includeLanguages": {
+    "postcss": "css"
+  },
+  "postcss.validate": false,
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ]
 }

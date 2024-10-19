@@ -1,5 +1,4 @@
 import {
-  Center,
   Group,
   ScrollArea,
   Table,
@@ -14,7 +13,6 @@ import {
   IconSearch,
   IconSelector,
 } from '@tabler/icons-react'
-import * as classes from './TableSort.css'
 import { useStore } from './store'
 import type { OrderType, RowData } from './types'
 
@@ -32,15 +30,16 @@ function Th({ children, order, sorted, onSort }: ThProps) {
       : IconChevronDown
     : IconSelector
   return (
-    <Table.Th className={classes.th}>
-      <UnstyledButton onClick={onSort} className={classes.control}>
+    <Table.Th className="p-0">
+      <UnstyledButton
+        className="w-full px-md py-xs hover:bg-hover"
+        onClick={onSort}
+      >
         <Group justify="space-between">
           <Text fw={500} fz="sm">
             {children}
           </Text>
-          <Center className={classes.icon}>
-            <Icon style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
-          </Center>
+          <Icon className="size-4" stroke={1.5} />
         </Group>
       </UnstyledButton>
     </Table.Th>

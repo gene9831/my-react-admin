@@ -10,7 +10,6 @@ import {
   IconPresentationAnalytics,
 } from '@tabler/icons-react'
 import { createFileRoute, Outlet, useMatch } from '@tanstack/react-router'
-import * as classes from './route.css'
 
 export const Route = createFileRoute('/home')({
   component: Layout,
@@ -76,8 +75,8 @@ function Layout() {
   return (
     <>
       <NavbarNested linksGroup={processLinksGroup(match)} />
-      <Box className={classes.containerWrap}>
-        <Container size="xl" className={classes.container}>
+      <Box className="pl-[var(--sidebar-width)]">
+        <Container size="xl" className="py-md">
           <Outlet />
         </Container>
       </Box>

@@ -1,12 +1,24 @@
 # 样式开发文档
 
+样式开发集成了两种方案，优先使用 tailwind css
+
+## tailwind css
+
+参考[官方文档](https://tailwindcss.com/docs/installation)，多用 `ctrl+k` 搜索功能
+
+注意事项：
+
+- 最好避免使用 `@apply`，使用 `@apply` 的最终效果其实和直接写 `css` 样式差不多
+- 使用 `clsx` 来合并样式，或者实现动态样式
+- 组件有 `data-[xxx]` 属性时，属性选择器优先级比伪类高，可以利用这一点来实现某些状态的组件样式不被覆盖
+
 ## css in ts
 
 使用 `@vanilla-extract/css` 工具来实现 `css in ts`。好处是完善的类型和变量提示，缺点是不方便直接赋值原生的css代码
 
 官方文档 <https://mantine.dev/styles/vanilla-extract/>
 
-## 简单示例
+### 简单示例
 
 ```ts
 // Demo.css.ts
@@ -44,7 +56,7 @@ export function Demo() {
 - 使用 `rem` 函数将单位px转换成单位rem
 - 使用 `theme.ts` 导出的 `vars` 来获取 `mantine` 主题的css变量
 
-## 其他选择器
+### 其他选择器
 
 ```ts
 // Demo.css.ts
@@ -91,6 +103,6 @@ export function Demo() {
 - 暗色选择器加上属性选择器组合为：`${vars.darkSelector}[data-xxx]`，中间没有空格。`vars.darkSelector` 相当于 `[data-mantine-color-scheme="dark"] &`
 - 如果优先级不够高，可以加上 `[data-mantine-color-scheme]`
 
-## 更多用法
+### 更多用法
 
 更多用法请查看官方文档 <https://mantine.dev/styles/vanilla-extract/>

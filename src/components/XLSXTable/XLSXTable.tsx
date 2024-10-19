@@ -1,7 +1,6 @@
-import { Box, Button } from '@mantine/core'
+import { Box, Button, Space } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import XLSX from 'xlsx'
-import * as classes from './XLSXTable.css'
 
 const createSheet = () => {
   const data = [['Width', 10, 20, 30, 40, 50, 20, 20]]
@@ -42,34 +41,13 @@ export function XLSXTable() {
   }
 
   return (
-    <Box className={classes.container}>
+    <Box>
       <Button onClick={handleExport}>
         <b>Export XLSX!</b>
       </Button>
-      <Box className={classes.a4Page}>
+      <Space h="lg"></Space>
+      <Box className="h-[297mm] w-[210mm] overflow-hidden bg-white p-[20mm] text-black shadow-md">
         <div dangerouslySetInnerHTML={{ __html }} />
-        {/* <table ref={tableRef} className={classes.table}>
-          <tbody>
-            <tr>
-              <td colSpan={3}>SheetJS Table Export</td>
-            </tr>
-            <tr>
-              <td>Author</td>
-              <td>ID</td>
-              <td>你好!</td>
-            </tr>
-            <tr>
-              <td>SheetJS</td>
-              <td>7262</td>
-              <td>வணக்கம்!</td>
-            </tr>
-            <tr>
-              <td colSpan={3}>
-                <a href="//sheetjs.com">Powered by SheetJS</a>
-              </td>
-            </tr>
-          </tbody>
-        </table> */}
       </Box>
     </Box>
   )

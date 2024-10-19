@@ -9,7 +9,7 @@ import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { providerFactory, Providers } from './components'
 import { routeTree } from './routeTree.gen'
-import { cssVariablesResolver, theme } from './theme'
+import { theme } from './theme'
 
 const queryClient = new QueryClient()
 
@@ -27,7 +27,7 @@ declare module '@tanstack/react-router' {
 }
 
 const providers = [
-  providerFactory(MantineProvider, { theme, cssVariablesResolver }),
+  providerFactory(MantineProvider, { theme }),
   providerFactory(DatesProvider, { settings: { locale: 'zh-cn' } }),
   providerFactory(QueryClientProvider, { client: queryClient }),
 ]

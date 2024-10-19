@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "clinyong.vscode-css-modules",
+    "vunguyentuan.vscode-css-variables",
+    "vunguyentuan.vscode-postcss"
+  ]
+}

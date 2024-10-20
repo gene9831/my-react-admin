@@ -75,7 +75,7 @@ function Layout() {
   return (
     <>
       <NavbarNested linksGroup={processLinksGroup(match)} />
-      <Box className="pl-[var(--sidebar-width)]">
+      <Box className="pl-sidebar">
         <Container size="xl" className="py-md">
           <Outlet />
         </Container>

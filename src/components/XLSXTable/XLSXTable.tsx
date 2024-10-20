@@ -1,4 +1,4 @@
-import { Box, Button, Space } from '@mantine/core'
+import { Box, Button, Paper, Space } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import XLSX from 'xlsx'
 
@@ -46,9 +46,13 @@ export function XLSXTable() {
         <b>Export XLSX!</b>
       </Button>
       <Space h="lg"></Space>
-      <Box className="h-[297mm] w-[210mm] overflow-hidden bg-white p-[20mm] text-black shadow-md">
+      <Paper
+        withBorder
+        shadow="md"
+        className="h-[297mm] w-[210mm] overflow-hidden bg-white p-[20mm] text-black"
+      >
         <div dangerouslySetInnerHTML={{ __html }} />
-      </Box>
+      </Paper>
     </Box>
   )
 }

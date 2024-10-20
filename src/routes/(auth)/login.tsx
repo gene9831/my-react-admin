@@ -19,7 +19,7 @@ export const Route = createFileRoute('/(auth)/login')({
 function Login() {
   return (
     <Container size={420} my={40}>
-      <Title ta="center" style={{ fontWeight: 900 }}>
+      <Title ta="center" className="font-black">
         Welcome back!
       </Title>
       <Text c="dimmed" size="sm" ta="center" mt={5}>

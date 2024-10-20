@@ -5,7 +5,6 @@ import {
   Text,
   TextInput,
   UnstyledButton,
-  rem,
 } from '@mantine/core'
 import {
   IconChevronDown,
@@ -89,12 +88,7 @@ export function TableSort() {
       <TextInput
         placeholder="Search"
         mb="md"
-        leftSection={
-          <IconSearch
-            style={{ width: rem(16), height: rem(16) }}
-            stroke={1.5}
-          />
-        }
+        leftSection={<IconSearch className="size-4" stroke={1.5} />}
         value={search}
         onChange={handleSearchChange}
       />

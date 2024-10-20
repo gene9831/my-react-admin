@@ -17,7 +17,7 @@ export function NavbarNested(props: NavbarNestedProps) {
   ))
 
   return (
-    <nav className="fixed bottom-0 left-0 top-[var(--toolbar-height)] flex w-[var(--sidebar-width)] flex-col border-r bg-[var(--mantine-color-default)]">
+    <nav className="fixed bottom-0 left-0 top-toolbar flex w-sidebar flex-col border-r bg-default">
       <ScrollArea className="flex-1" classNames={{ viewport: 'py-md' }}>
         {links}
       </ScrollArea>

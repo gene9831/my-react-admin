@@ -1,4 +1,4 @@
-import { Anchor, Container, Group, rem } from '@mantine/core'
+import { Anchor, Container, Group } from '@mantine/core'
 import { Link, useLocation } from '@tanstack/react-router'
 import { useMemo } from 'react'
 import { ColorSchemaIcon } from './ColorSchemaIcon.tsx'
@@ -22,7 +22,7 @@ export function Header({ links }: HeaderProps) {
     <Anchor
       key={link.label}
       component={Link}
-      className="flex h-9 items-center rounded-sm px-[18px] text-sm font-semibold text-[var(--mantine-color-text)] no-underline hover:bg-hover data-[active]:bg-primary data-[active]:text-white"
+      className="flex h-9 items-center rounded-sm px-[18px] text-sm font-semibold text-body no-underline hover:bg-hover data-[active]:bg-primary data-[active]:text-white"
       to={link.link}
       data-active={active === link.link || undefined}
     >
@@ -31,10 +31,10 @@ export function Header({ links }: HeaderProps) {
   ))
 
   return (
-    <header className="fixed top-0 z-app h-[var(--toolbar-height)] w-full border-b bg-[var(--mantine-color-default)]">
+    <header className="fixed top-0 z-app h-toolbar w-full border-b bg-default">
       <Container fluid className="flex h-full items-center justify-between">
         <Group>
-          <Logo style={{ width: rem(120) }} />
+          <Logo className="w-[120px]" />
         </Group>
         <Group gap={8} visibleFrom="xs">
           {items}

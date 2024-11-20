@@ -13,6 +13,10 @@ export default defineConfig({
         find: '@',
         replacement: fileURLToPath(new URL('./src', import.meta.url)),
       },
+      {
+        find: '@tabler/icons-react',
+        replacement:'@tabler/icons-react/dist/esm/icons/index.mjs'
+      }
     ],
   },
 })

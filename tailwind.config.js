@@ -24,5 +24,5 @@ export default {
     },
   },
   plugins: [],
-  presets: [tailwindPresetMantine],
+  presets: [tailwindPresetMantine()],
 }
